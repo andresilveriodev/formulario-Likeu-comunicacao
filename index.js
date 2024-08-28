@@ -14,18 +14,6 @@ app.use(cors());
 // Adiciona este middleware para processar dados JSON
 app.use(express.json());
 
-// Configuração do transportador Nodemailer
-const transporter = nodemailer.createTransport({
-  service: 'gmail',
-  auth: {
-    type: 'OAuth2',
-    user: process.env.MAIL_USERNAME,
-    pass: process.env.MAIL_PASSWORD,
-    clientId: process.env.OAUTH_CLIENTID,
-    clientSecret: process.env.OAUTH_CLIENT_SECRET,
-    refreshToken: process.env.OAUTH_REFRESH_TOKEN
-  }
-});
 
 // Configuração da Google Sheets API
 const sheets = google.sheets('v4');
