@@ -6,6 +6,7 @@ const app = express();
 const port = 3001;
 require('dotenv').config(); // Carrega as variáveis de ambiente do arquivo .env
 const nodemailer = require('nodemailer');
+const sendEmail = require('./sendEmail');
 
 // Permitir CORS para todas as origens
 app.use(cors());
@@ -84,28 +85,27 @@ async function gravarNoSheet(formData) {
 
 
 // Função que envia um e-mail e grava os dados no Google Sheets
-function enviarEmail(formData, res) {
-  const mailOptions = {
-    from: process.env.MAIL_USERNAME,
-    to: 'iluminismos@gmail.com',
-    subject: 'Testando esse projeto',
-    text: `Dados do formulário: ${JSON.stringify(formData)}`
-  };
+async function enviarEmail(formData, res){
 
-  transporter.sendMail(mailOptions, async function(err, info) {
-    if (err) {
-      console.log("Erro ao enviar e-mail: " + err);
-      res.status(500).send("Erro ao enviar e-mail");
-    } else {
-      console.log("E-mail enviado com sucesso: " + info.response);
+
+  try {
+    await sendEmail(formData); // Chama a função sendEmail para enviar o e-mail
+    res.status(200).send("E-mail enviado com sucesso");
+  } catch (error) {
+    console.error("Erro ao enviar e-mail:", error);
+    res.status(500).send("Erro ao enviar e-mail");
+  }
       
       // Gravar os dados no Google Sheets após o envio do e-mail
       await gravarNoSheet(formData);
 
       res.status(200).send("E-mail enviado com sucesso");
-    }
-  });
-}
+  }
+
+
+
+
+
 
 // Rota para enviar o e-mail
 app.post('/send-email', (req, res) => {
