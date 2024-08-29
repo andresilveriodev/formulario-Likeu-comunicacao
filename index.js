@@ -73,34 +73,29 @@ async function gravarNoSheet(formData) {
 
 
 // Função que envia um e-mail e grava os dados no Google Sheets
-async function enviarEmail(formData, res){
-
-
+async function enviarEmail(formData, res) {
   try {
-    await sendEmail(formData); // Chama a função sendEmail para enviar o e-mail
-    res.status(200).send("E-mail enviado com sucesso");
+      await sendEmail(formData); // Chama a função sendEmail para enviar o e-mail
   } catch (error) {
-    console.error("Erro ao enviar e-mail:", error);
-    res.status(500).send("Erro ao enviar e-mail");
-  }
-      
-      // Gravar os dados no Google Sheets após o envio do e-mail
-      await gravarNoSheet(formData);
-
-      res.status(200).send("E-mail enviado com sucesso");
+      console.error("Erro ao enviar e-mail:", error);
+      res.status(500).send("Erro ao enviar e-mail");
+      return; // Para a execução se der erro
   }
 
+  // Gravar os dados no Google Sheets após o envio do e-mail
+  await gravarNoSheet(formData);
 
+  res.status(200).send("E-mail enviado com sucesso"); // Esta linha envia a resposta final
+}
 
 
 
 
 // Rota para enviar o e-mail
 app.post('/send-email', (req, res) => {
-    const formData = req.body; // Acessa req.body diretamente
-    enviarEmail(formData, res);
+  const formData = req.body; // Acessa req.body diretamente
+  enviarEmail(formData, res); // Chama a função enviarEmail para processar o envio
 });
-
 
 // Inicia o servidor
 app.listen(port, () => {
