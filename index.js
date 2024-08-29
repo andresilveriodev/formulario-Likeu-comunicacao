@@ -49,6 +49,7 @@ async function gravarNoSheet(formData) {
       formData.solicitante,      // Quem está solicitando
       formData.departamento,     // Departamento
       month + " " + year,        // Mês e ano
+      formData.tipoFormulario,   // Tipo do formulario
     ]
   ]; 
 
