@@ -39,22 +39,27 @@ async function sendEmail(formData) {
             <p><strong>Informação Adicional:</strong> ${formData['informação adicional']}</p>
         `;
     } else if (formData.tipoFormulario === 'BriefingRedesSociais') {
-        // Verifique se `formData.objetivos` existe e é um objeto
+        
+        console.log('Objetivos recebidos no backend:', formData.objetivos);
+
         let plataformasHtml = '';
-        if (formData.objetivos && typeof formData.objetivos === 'object') {
-            for (const [plataforma, objetivo] of Object.entries(formData.objetivos)) {
-                plataformasHtml += `
-                    <p><strong>Plataforma:</strong> ${plataforma}</p>
-                    <p><strong>Objetivo:</strong> ${objetivo}</p>
-                `;
-            }
+        if (formData.objetivos && typeof formData.objetivos === 'object' && Object.keys(formData.objetivos).length > 0) {
+          for (const [plataforma, objetivo] of Object.entries(formData.objetivos)) {
+            plataformasHtml += `
+              <p>13º Plataformas e objetivos específicos:</p>
+              <p><strong>Plataforma:</strong> ${plataforma}</p>
+              <p><strong>Objetivo:</strong> ${objetivo}</p>
+            `;
+          }
         } else {
-            plataformasHtml = `<p><strong>Objetivos não especificados ou inválidos.</strong></p>`;
+          plataformasHtml = `<p><strong>Objetivos não especificados ou inválidos.</strong></p>`;
         }
+      
 
         // Gera o HTML para as pessoas a serem entrevistadas
         const pessoasEntrevistadasHtml = formData.interviewees && formData.interviewees.length > 0
             ? formData.interviewees.map(interviewee => `
+                <p>14º Pessoas a serem entrevistadas:</p>
                 <p><strong>Nome:</strong> ${interviewee.name}</p>
                 <p><strong>Cargo/Função:</strong> ${interviewee.role}</p>
                 <p><strong>Contato:</strong> ${interviewee.contact}</p>
@@ -63,22 +68,22 @@ async function sendEmail(formData) {
 
         // Configuração do conteúdo do e-mail
         mailOptions.html = `
-            <h2>Dados do Formulário Briefing Redes Sociais</h2>
-            <p><strong>Departamento:</strong> ${formData.departamento}</p>
-            <p><strong>Solicitante:</strong> ${formData.solicitante}</p>
-            <p><strong>Profissional:</strong> ${formData.profissional}</p>
-            <p><strong>Data da solicitação:</strong> ${formData['Data da solicitação']}</p>
-            <p><strong>Retranca:</strong> ${formData['retranca']}</p>
-            <p><strong>Cobertura:</strong> ${formData['cobertura']}</p>
-            <p><strong>Data e horário do evento:</strong> ${formData['data e horário do evento']}</p>
-            <p><strong>Local (endereço completo):</strong> ${formData['local']}</p>
-            <p><strong>Assunto da pauta:</strong> ${formData['assunto da pauta']}</p>
-            <p><strong>Objetivo do conteúdo:</strong> ${formData['objetivo do conteúdo']}</p>
-            <p><strong>Tipo de imagem que se pretende obter nesta cobertura:</strong> ${formData['detalhista']}</p>
-            <p><strong>Quantidade de Conteúdos Derivados:</strong> ${formData['quantidade']}</p>
+            <h2> Dados do Formulário Briefing Redes Sociais</h2>
+            <p> <strong>1º Departamento:</strong> ${formData.departamento}</p>
+            <p> <strong>2º Solicitante:</strong> ${formData.solicitante}</p>
+            <p> <strong>3º Profissional:</strong> ${formData.profissional}</p>
+            <p> <strong>4º Data da solicitação:</strong> ${formData['Data da solicitação']}</p>
+            <p> <strong>5º Retranca:</strong> ${formData['retranca']}</p>
+            <p> <strong>6º Cobertura:</strong> ${formData['cobertura']}</p>
+            <p> <strong>7º Data e horário do evento:</strong> ${formData['data e horário do evento']}</p>
+            <p> <strong>8º Local (endereço completo):</strong> ${formData['local']}</p>
+            <p> <strong>9º Assunto da pauta:</strong> ${formData['assunto da pauta']}</p>
+            <p> <strong>10º Objetivo do conteúdo:</strong> ${formData['objetivo do conteúdo']}</p>
+            <p> <strong>11º Tipo de imagem que se pretende obter nesta cobertura:</strong> ${formData['detalhista']}</p>
+            <p> <strong>12º Quantidade de Conteúdos Derivados:</strong> ${formData['quantidade']}</p>
             ${plataformasHtml}
             ${pessoasEntrevistadasHtml}
-            <p><strong>Informações adicionais:</strong> ${formData['departamentos envolvidos']}</p>
+            <p><strong>15º Informações adicionais:</strong> ${formData['departamentos envolvidos']}</p>
         `;
     }
 
