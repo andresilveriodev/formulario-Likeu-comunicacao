@@ -39,29 +39,34 @@ async function sendEmail(formData) {
             <p><strong>Formatos e Especificações:</strong> ${formData['formatos e as especificações']}</p>
             <p><strong>Informação Adicional:</strong> ${formData['informação adicional']}</p>
         `;
-    } else if (formData.tipoFormulario === 'BriefingRedesSociais') {
-             
-            const plataformasHtml = '';
-            for (const [plataforma, objetivo] of Object.entries(formData.objetivos)) {
-                plataformasHtml += `
-                    <p><strong>Plataforma:</strong> ${plataforma}</p>
-                    <p><strong>Objetivo:</strong> ${objetivo}</p>
-                `;
-            }
 
-            const pessoasEntrevistadasHtml = formData.interviewees.map(interviewee => `
+        
+    } else if (formData.tipoFormulario === 'BriefingRedesSociais') {
+        // Inicialize a variável para armazenar o HTML das plataformas e objetivos específicos
+        let plataformasHtml = '';
+        // Concatena o HTML para cada plataforma e objetivo
+        for (const [plataforma, objetivo] of Object.entries(formData.objetivos)) {
+            plataformasHtml += `
+                <p><strong>Plataforma:</strong> ${plataforma}</p>
+                <p><strong>Objetivo:</strong> ${objetivo}</p>
+            `;
+        }
+    
+        // Gera o HTML para as pessoas a serem entrevistadas
+        const pessoasEntrevistadasHtml = formData.interviewees.map(interviewee => `
             <p><strong>Nome:</strong> ${interviewee.name}</p>
             <p><strong>Cargo/Função:</strong> ${interviewee.role}</p>
             <p><strong>Contato:</strong> ${interviewee.contact}</p>
-             `).join('');
-        
+        `).join('');
+    
+        // Configuração do conteúdo do e-mail
         mailOptions.html = `
             <h2>Dados do Formulário Briefing Redes Sociais</h2>
-            <p><strong>Departamento:</strong> ${formData.departamento}</p> 
+            <p><strong>Departamento:</strong> ${formData.departamento}</p>
             <p><strong>Solicitante:</strong> ${formData.solicitante}</p>
-            <p><strong>Profissional:</strong> ${formData.profissional}</p> 
-            <p><strong>Data da solicitação:</strong> ${formData['Data da solicitação']}</p> 
-            <p><strong>Retranca:</strong> ${formData['retranca']}</p> 
+            <p><strong>Profissional:</strong> ${formData.profissional}</p>
+            <p><strong>Data da solicitação:</strong> ${formData['Data da solicitação']}</p>
+            <p><strong>Retranca:</strong> ${formData['retranca']}</p>
             <p><strong>Cobertura:</strong> ${formData['cobertura']}</p>
             <p><strong>Data e horário do evento:</strong> ${formData['data e horário do evento']}</p>
             <p><strong>Local (endereço completo):</strong> ${formData['local']}</p>
@@ -69,11 +74,12 @@ async function sendEmail(formData) {
             <p><strong>Objetivo do conteúdo:</strong> ${formData['objetivo do conteúdo']}</p>
             <p><strong>Tipo de imagem que se pretende obter nesta cobertura:</strong> ${formData['detalhista']}</p>
             <p><strong>Quantidade de Conteúdos Derivados:</strong> ${formData['quantidade']}</p>
-            ${plataformasHtml}
-            ${pessoasEntrevistadasHtml}
+            ${plataformasHtml} <!-- Adiciona o HTML das plataformas e objetivos específicos -->
+            ${pessoasEntrevistadasHtml} <!-- Adiciona o HTML das pessoas a serem entrevistadas -->
             <p><strong>Informações adicionais:</strong> ${formData['departamentos envolvidos']}</p>
         `;
     }
+    
 
 
     try {
