@@ -46,10 +46,9 @@ async function gravarNoSheet(formData) {
   const values = [
     [
       new Date().toISOString(),  // Data e hora do envio
-      formData.solicitando,      // Quem está solicitando
+      formData.solicitante,      // Quem está solicitando
       formData.departamento,     // Departamento
       month + " " + year,        // Mês e ano
-      JSON.stringify(formData)   // Dados do formulário
     ]
   ]; 
 

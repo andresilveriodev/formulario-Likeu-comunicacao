@@ -19,7 +19,7 @@ async function sendEmail(formData) {
     let mailOptions = {
         from: process.env.MAIL_USERNAME, // Seu endereço de e-mail configurado nas variáveis de ambiente
         to: 'iluminismos@gmail.com',
-        subject: 'Testando esse projeto', // Assunto do e-mail
+        subject: 'Formulario Pai Eterno - Marketing / Redes Sociais', // Assunto do e-mail
     };
 
     // Verificar o tipo de formulário e configurar o conteúdo do e-mail
@@ -37,6 +37,8 @@ async function sendEmail(formData) {
             <p><strong>Cronograma Detalhado:</strong> ${formData['cronograma detalhado']}</p>
             <p><strong>Formatos e Especificações:</strong> ${formData['formatos e as especificações']}</p>
             <p><strong>Informação Adicional:</strong> ${formData['informação adicional']}</p>
+            <br/><br/>
+            <p>© Copyright, Pai Eterno</p>
         `;
     } else if (formData.tipoFormulario === 'BriefingRedesSociais') {
         
@@ -81,6 +83,9 @@ async function sendEmail(formData) {
             ${plataformasHtml}
             ${pessoasEntrevistadasHtml}
             <p><strong>15º Informações adicionais:</strong> ${formData['departamentos envolvidos']}</p>
+            <br/><br/>
+            <p>© Copyright, Pai Eterno</p>
+            
         `;
     }
 
