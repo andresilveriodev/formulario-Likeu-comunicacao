@@ -25,7 +25,7 @@ async function sendEmail(formData) {
     // Verificar o tipo de formulário e configurar o conteúdo do e-mail
     if (formData.tipoFormulario === 'BriefingMarketing') {
         mailOptions.html = `
-            <h2>Dados do Formulário Briefing Marketing</h2>
+            <h2 style="color: #B80D46;">Dados do Formulário Briefing Marketing</h2>
             <p><strong>Departamento:</strong> ${formData.departamento}</p>
             <p><strong>Solicitante:</strong> ${formData.solicitante}</p>
             <p><strong>Data:</strong> ${formData.data}</p>
@@ -42,18 +42,15 @@ async function sendEmail(formData) {
         
         console.log('Objetivos recebidos no backend:', formData.objetivos);
 
-        let plataformasHtml = '';
-        if (formData.objetivos && typeof formData.objetivos === 'object' && Object.keys(formData.objetivos).length > 0) {
-          for (const [plataforma, objetivo] of Object.entries(formData.objetivos)) {
-            plataformasHtml += `
-              <p>13º Plataformas e objetivos específicos:</p>
-              <p><strong>Plataforma:</strong> ${plataforma}</p>
-              <p><strong>Objetivo:</strong> ${objetivo}</p>
-            `;
-          }
-        } else {
-          plataformasHtml = `<p><strong>Objetivos não especificados ou inválidos.</strong></p>`;
-        }
+
+        // Gera o HTML para as plataformas e objetivos
+        const plataformasHtml = formData.platforms && formData.platforms.length > 0
+              ? formData.platforms.map(platforms => `
+                  <p>13º Plataformas e objetivos específicos:</p>
+                  <p><strong>plataforma:</strong> ${platforms.plataforma}</p>
+                  <p><strong>objetivo:</strong> ${platforms.objetivo}</p>
+                  `).join('')
+             : `<p><strong>Não há plataformas e objetivos.</strong></p>`;
       
 
         // Gera o HTML para as pessoas a serem entrevistadas
@@ -68,7 +65,7 @@ async function sendEmail(formData) {
 
         // Configuração do conteúdo do e-mail
         mailOptions.html = `
-            <h2> Dados do Formulário Briefing Redes Sociais</h2>
+            <h2 style="color: #13435C;"> Dados do Formulário Briefing Redes Sociais</h2>
             <p> <strong>1º Departamento:</strong> ${formData.departamento}</p>
             <p> <strong>2º Solicitante:</strong> ${formData.solicitante}</p>
             <p> <strong>3º Profissional:</strong> ${formData.profissional}</p>
