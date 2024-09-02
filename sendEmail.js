@@ -18,7 +18,7 @@ async function sendEmail(formData) {
     // Configuração do e-mail
     let mailOptions = {
         from: process.env.MAIL_USERNAME, // Seu endereço de e-mail configurado nas variáveis de ambiente
-        to: 'pollyana.reis@paieterno.com.br, atendimento.mkt@paieterno.com.br', // Múltiplos destinatários separados por vírgula
+        to: 'pollyana.reis@paieterno.com.br, atendimento.mkt@paieterno.com.br, iluminismos@gmail.com', // Múltiplos destinatários separados por vírgula
         subject: 'Formulario Pai Eterno - Marketing / Redes Sociais', // Assunto do e-mail
     };
 
