@@ -26,17 +26,17 @@ async function sendEmail(formData) {
     if (formData.tipoFormulario === 'BriefingMarketing') {
         mailOptions.html = `
             <h1 style="color: #B80D46;">Dados do Formulário Briefing Marketing</h1>
-            <h3 style="color: #B80D46;"><strong>Departamento:</strong> ${formData.departamento}</h3>
-            <h3 style="color: #B80D46;"><strong>Solicitante:</strong> ${formData.solicitante}</h3>
-            <h3 style="color: #B80D46;"><strong>Data:</strong> ${formData.data}</h3>
-            <h3 style="color: #B80D46;"><strong>Material a ser Produzido:</strong> ${formData['material a ser produzido']}</h3>
-            <h3 style="color: #B80D46;"><strong>Objetivo desta Produção:</strong> ${formData['objetivo desta produção']}</h3>
-            <h3 style="color: #B80D46;"><strong>Público-Alvo:</strong> ${formData['Público-Alvo']}</h3>
-            <h3 style="color: #B80D46;"><strong>Mensagem fundamental que deseja comunicar:</strong> ${formData['mensagem fundamental']}</h3>
-            <h3 style="color: #B80D46;"><strong>Canais:</strong> ${formData['canais']}</h3>
-            <h3 style="color: #B80D46;"><strong>Cronograma Detalhado:</strong> ${formData['cronograma detalhado']}</h3>
-            <h3 style="color: #B80D46;"><strong>Formatos e Especificações:</strong> ${formData['formatos e as especificações']}</h3>
-            <h3 style="color: #B80D46;"><strong>Informação Adicional:</strong> ${formData['informação adicional']}</h3>
+            <h3 style="color: #B80D46;"><strong>Departamento:</strong></h3><p>${formData.departamento}</p>
+            <h3 style="color: #B80D46;"><strong>Solicitante:</strong> </h3><p>${formData.solicitante}</p>
+            <h3 style="color: #B80D46;"><strong>Data:</strong> </h3><p>${formData.data}</p>
+            <h3 style="color: #B80D46;"><strong>Material a ser Produzido:</strong> </h3><p>${formData['material a ser produzido']}</p>
+            <h3 style="color: #B80D46;"><strong>Objetivo desta Produção:</strong></h3><p>${formData['objetivo desta produção']}</p>
+            <h3 style="color: #B80D46;"><strong>Público-Alvo:</strong> </h3><p>${formData['Público-Alvo']}</p>
+            <h3 style="color: #B80D46;"><strong>Mensagem fundamental que deseja comunicar:</strong> </h3><p>${formData['mensagem fundamental']}</p>
+            <h3 style="color: #B80D46;"><strong>Canais:</strong> </h3><p>${formData['canais']}</p>
+            <h3 style="color: #B80D46;"><strong>Cronograma Detalhado:</strong> </h3><p>${formData['cronograma detalhado']}</p>
+            <h3 style="color: #B80D46;"><strong>Formatos e Especificações:</strong> </h3><p>${formData['formatos e as especificações']}</p>
+            <h3 style="color: #B80D46;"><strong>Informação Adicional:</strong> </h3><p>${formData['informação adicional']}</p>
             <br/><br/>
             <p>paieterno.com.br</p>
             <p>© Copyright, Pai Eterno</p>
@@ -49,9 +49,9 @@ async function sendEmail(formData) {
         // Gera o HTML para as plataformas e objetivos
         const plataformasHtml = formData.platforms && formData.platforms.length > 0
               ? formData.platforms.map(platforms => `
-                  <h3><strong>13º Plataformas e objetivos específicos:</strong></h3>
-                  <h3><strong>Plataforma:</strong> ${platforms.plataforma}</h3>
-                  <h3><strong>Objetivo:</strong> ${platforms.objetivo}</h3>
+                  <h3><strong>13º Plataformas e objetivos específicos:</strong></h3><p> </p>
+                  <h3><strong>Plataforma:</strong> </h3><p>${platforms.plataforma}</p>
+                  <h3><strong>Objetivo:</strong> </h3><p>${platforms.objetivo}</p>
                   `).join('')
              : `<h3><strong>Não há plataformas e objetivos.</strong></h3>`;
       
@@ -60,30 +60,30 @@ async function sendEmail(formData) {
         const pessoasEntrevistadasHtml = formData.interviewees && formData.interviewees.length > 0
             ? formData.interviewees.map(interviewee => `
                 <h3><strong>14º Pessoas a serem entrevistadas:</strong></h3>
-                <h3><strong>Nome:</strong> ${interviewee.name}</h3>
-                <h3><strong>Cargo/Função:</strong> ${interviewee.role}</h3>
-                <h3><strong>Contato:</strong> ${interviewee.contact}</h3>
+                <h3><strong>Nome:</strong></h3><p>${interviewee.name}</p>
+                <h3><strong>Cargo/Função:</strong> </h3><p>${interviewee.role}</p>
+                <h3><strong>Contato:</strong> </h3><p>${interviewee.contact}</p>
               `).join('')
             : `<h3><strong>Não há pessoas a serem entrevistadas especificadas.</strong></h3>`;
 
         // Configuração do conteúdo do e-mail
         mailOptions.html = `
             <h1 style="color: #13435C;"> Dados do Formulário Briefing Redes Sociais</h1>
-            <h3 style="color: #13435C;"> <strong>1º Departamento:</strong> ${formData.departamento}</h3>
-            <h3 style="color: #13435C;"> <strong>2º Solicitante:</strong> ${formData.solicitante}</h3>
-            <h3 style="color: #13435C;"> <strong>3º Profissional:</strong> ${formData.profissional}</h3>
-            <h3 style="color: #13435C;"> <strong>4º Data da solicitação:</strong> ${formData['Data da solicitação']}</h3>
-            <h3 style="color: #13435C;"> <strong>5º Retranca:</strong> ${formData['retranca']}</h3>
-            <h3 style="color: #13435C;"> <strong>6º Cobertura:</strong> ${formData['cobertura']}</h3>
-            <h3 style="color: #13435C;"> <strong>7º Data e horário do evento:</strong> ${formData['data e horário do evento']}</h3>
-            <h3 style="color: #13435C;"> <strong>8º Local (endereço completo):</strong> ${formData['local']}</h3>
-            <h3 style="color: #13435C;"> <strong>9º Assunto da pauta:</strong> ${formData['assunto da pauta']}</h3>
-            <h3 style="color: #13435C;"> <strong>10º Objetivo do conteúdo:</strong> ${formData['objetivo do conteúdo']}</h3>
-            <h3 style="color: #13435C;"> <strong>11º Tipo de imagem que se pretende obter nesta cobertura:</strong> ${formData['detalhista']}</h3>
-            <h3 style="color: #13435C;"> <strong>12º Quantidade de Conteúdos Derivados:</strong> ${formData['quantidade']}</h3>
+            <h3 style="color: #13435C;"> <strong>1º Departamento:</strong> </h3><p>${formData.departamento}</p>
+            <h3 style="color: #13435C;"> <strong>2º Solicitante:</strong> </h3><p>${formData.solicitante}</p>
+            <h3 style="color: #13435C;"> <strong>3º Profissional:</strong> </h3><p>${formData.profissional}</p>
+            <h3 style="color: #13435C;"> <strong>4º Data da solicitação:</strong> </h3><p>${formData['Data da solicitação']}</p>
+            <h3 style="color: #13435C;"> <strong>5º Retranca:</strong> </h3><p>${formData['retranca']}</p>
+            <h3 style="color: #13435C;"> <strong>6º Cobertura:</strong> </h3><p>${formData['cobertura']}</p>
+            <h3 style="color: #13435C;"> <strong>7º Data e horário do evento:</strong> </h3><p>${formData['data e horário do evento']}</p>
+            <h3 style="color: #13435C;"> <strong>8º Local (endereço completo):</strong> </h3><p>${formData['local']}</p>
+            <h3 style="color: #13435C;"> <strong>9º Assunto da pauta:</strong> </h3><p>${formData['assunto da pauta']}</p>
+            <h3 style="color: #13435C;"> <strong>10º Objetivo do conteúdo:</strong> </h3><p>${formData['objetivo do conteúdo']}</p>
+            <h3 style="color: #13435C;"> <strong>11º Tipo de imagem que se pretende obter nesta cobertura:</strong> </h3><p>${formData['detalhista']}</p>
+            <h3 style="color: #13435C;"> <strong>12º Quantidade de Conteúdos Derivados:</strong> </h3><p>${formData['quantidade']}</p>
             ${plataformasHtml}
             ${pessoasEntrevistadasHtml}
-            <h3><strong>15º Informações adicionais:</strong> ${formData['departamentos envolvidos']}</h3>
+            <h3 style="color: #13435C;"><strong>15º Informações adicionais:</strong> </h3><p>${formData['departamentos envolvidos']}</p>
             <br/><br/>
             <p>paieterno.com.br</p>
             <p>© Copyright, Pai Eterno</p>
