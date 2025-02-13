@@ -11,21 +11,24 @@ const transporter = nodemailer.createTransport({
         clientId: process.env.OAUTH_CLIENTID,
         clientSecret: process.env.OAUTH_CLIENT_SECRET,
         refreshToken: process.env.OAUTH_REFRESH_TOKEN
-    }
+    },
+    logger: true, // Adicione este
+    debug: true  // Adicione este
 });
 
 async function sendEmail(formData) {
     // Configuração do e-mail
     let mailOptions = {
         from: process.env.MAIL_USERNAME, // Seu endereço de e-mail configurado nas variáveis de ambiente
-        to: 'pollyana.reis@paieterno.com.br, atendimento.mkt@paieterno.com.br, iluminismos@gmail.com, andre.silverio@tvpaieterno.com.br', // Múltiplos destinatários separados por vírgula
-        subject: 'Formulario Pai Eterno - Marketing / Redes Sociais', // Assunto do e-mail
+        to: 'iluminismos@gmail.com', // Múltiplos destinatários separados por vírgula
+        // to: 'atendimento@likeucomunicacao.com.br, likeucomunicacao@gmail.com', // Múltiplos destinatários separados por vírgula
+        subject: 'Formulario Likeu', // Assunto do e-mail
     };
 
 
 
     // Verificar o tipo de formulário e configurar o conteúdo do e-mail
-    if (formData.tipoFormulario === 'BriefingMarketing') {
+    if (formData.tipoFormulario === 'BriefingComunicação360') {
         mailOptions.html = `
             <h1 style="color: #B80D46;">Dados do Formulário Briefing Marketing</h1>
             <h3 style="color: #B80D46;"><strong>Departamento:</strong></h3><p>${formData.departamento}</p>
@@ -40,10 +43,10 @@ async function sendEmail(formData) {
             <h3 style="color: #B80D46;"><strong>Formatos e Especificações:</strong> </h3><p>${formData['formatos e as especificações']}</p>
             <h3 style="color: #B80D46;"><strong>Informação Adicional:</strong> </h3><p>${formData['informação adicional']}</p>
             <br/><br/>
-            <p>paieterno.com.br</p>
-            <p>© Copyright, Pai Eterno</p>
+            <p>likeucomunicacao.com.br/</p>
+            <p>© Copyright, Likeu Comunicação</p>
         `;
-    } else if (formData.tipoFormulario === 'BriefingRedesSociais') {
+    } else if (formData.tipoFormulario === 'BriefingConteúdosOnline') {
         
         console.log('Objetivos recebidos no backend:', formData.objetivos);
 
@@ -87,8 +90,9 @@ async function sendEmail(formData) {
             ${pessoasEntrevistadasHtml}
             <h3 style="color: #13435C;"><strong>15º Informações adicionais:</strong> </h3><p>${formData['departamentos envolvidos']}</p>
             <br/><br/>
-            <p>paieterno.com.br</p>
-            <p>© Copyright, Pai Eterno</p>
+
+            <p>likeucomunicacao.com.br/</p>
+            <p>© Copyright, Likeu Comunicação</p>
             
         `;
     }
