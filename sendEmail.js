@@ -20,7 +20,7 @@ async function sendEmail(formData) {
     // Configuração do e-mail
     let mailOptions = {
         from: process.env.MAIL_USERNAME, // Seu endereço de e-mail configurado nas variáveis de ambiente
-        to: 'iluminismos@gmail.com', // Múltiplos destinatários separados por vírgula
+        to: 'iluminismos@gmail.com, atendimento@likeucomunicacao.com.br, likeucomunicacao@gmail.com', // Múltiplos destinatários separados por vírgula
         // to: 'atendimento@likeucomunicacao.com.br, likeucomunicacao@gmail.com', // Múltiplos destinatários separados por vírgula
         subject: 'Formulario Briefing Likeu', // Assunto do e-mail
     };
