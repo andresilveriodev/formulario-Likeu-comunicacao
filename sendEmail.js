@@ -29,8 +29,8 @@ async function sendEmail(formData, files = [], res) {
   
     let mailOptions = {
       from: process.env.MAIL_USERNAME,
-      to: 'iluminismos@gmail.com',
-      //to: 'iluminismos@gmail.com, atendimento@likeucomunicacao.com.br, likeucomunicacao@gmail.com',
+      // to: 'iluminismos@gmail.com',
+      to: 'iluminismos@gmail.com, atendimento@likeucomunicacao.com.br, likeucomunicacao@gmail.com',
       subject: 'Formulario Briefing Likeu',
       html: `... seu conteúdo HTML aqui ...`, // seu conteúdo HTML conforme seu código
       attachments
