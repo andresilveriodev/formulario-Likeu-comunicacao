@@ -1,11 +1,19 @@
 const express = require('express');
 const cors = require('cors');
 const multer  = require('multer');
-const upload = multer(); // Utiliza armazenamento em memória
 const app = express();
 const port = 3001;
 require('dotenv').config(); // Carrega as variáveis de ambiente do arquivo .env
 const sendEmail = require('./sendEmail');
+
+// Configuração do Multer para armazenamento em memória com limites aumentados
+const upload = multer({
+  storage: multer.memoryStorage(), // Armazena arquivos na memória
+  limits: {
+    fileSize: 50 * 1024 * 1024, // Limite de 50MB por arquivo
+    files: 10 // Número máximo de arquivos
+  }
+});
 
 // Permitir CORS para todas as origens
 app.use(cors());

@@ -40,9 +40,12 @@ async function sendEmail(formData, files = []) {
     content: file.buffer
   }));
 
+  
+
   // Configuração padrão do e-mail
   let mailOptions = {
     from: process.env.MAIL_USERNAME,
+    // to: 'iluminismos@gmail.com', // Adicione outros destinatários se necessário
     to: 'iluminismos@gmail.com, likeucomunicacao@gmail.com, atendimento@likeucomunicacao.com.br ', // Adicione outros destinatários se necessário
     subject: 'Formulario Briefing Likeu',
     html: '<!-- Conteúdo HTML padrão -->',
